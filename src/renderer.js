@@ -11,6 +11,10 @@ export class Renderer {
       this.drawStartScreen();
       return;
     }
+    if (game.state === 'gameOver') {
+      this.drawGameOverScreen(game);
+      return;
+    }
     this.drawHud(game);
     this.drawPlayer(game.player);
     this.drawItems(game.items);
@@ -39,6 +43,17 @@ export class Renderer {
     this.context.fillText(`☕ ${game.score}`, CONFIG.hudMargin, CONFIG.hudY);
     this.context.textAlign = 'right';
     this.context.fillText('❤️'.repeat(game.lives), CONFIG.canvasWidth - CONFIG.hudMargin, CONFIG.hudY);
+  }
+
+  drawGameOverScreen(game) {
+    this.context.textAlign = 'center';
+    this.context.fillStyle = CONFIG.titleColor;
+    this.context.font = `${CONFIG.titleFontSize}px ${CONFIG.titleFont}`;
+    this.context.fillText('Fim de jogo', CONFIG.canvasWidth / 2, CONFIG.titleOffsetY);
+    this.context.fillStyle = CONFIG.textColor;
+    this.context.font = `${CONFIG.instructionFontSize}px ${CONFIG.instructionFont}`;
+    this.context.fillText(`Pontuação: ${game.score}  |  Recorde: ${game.highScore}`, CONFIG.canvasWidth / 2, CONFIG.instructionOffsetY);
+    this.context.fillText('Pressione Espaço para jogar novamente', CONFIG.canvasWidth / 2, CONFIG.instructionOffsetY + CONFIG.gameOverInstructionGap);
   }
 
   drawPlayer(player) {

@@ -10,6 +10,7 @@ export const CONFIG = {
   instructionFont: 'sans-serif',
   titleOffsetY: 240,
   instructionOffsetY: 310,
+  gameOverInstructionGap: 48,
   hudFontSize: 28,
   hudMargin: 24,
   hudY: 40,

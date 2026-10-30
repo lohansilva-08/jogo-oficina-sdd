@@ -20,7 +20,7 @@
   - **Como verificar:** iniciar com Espaço e mover o dev com as quatro teclas → o dev não sai dos limites; cafés e bugs caem e itens sem coleta desaparecem ao chegar ao chão.
   - _Requisitos: 1.3, 2.1, 2.2, 2.3, 3.1, 3.4_
 
-- [ ] 3. Implementar colisões, vidas, fim da partida e reinício
+- [x] 3. Implementar colisões, vidas, fim da partida e reinício
   - Aplicar +1 ponto ao coletar café e remover o café colidido.
   - Diminuir 1 vida ao colidir com bug e encerrar ao chegar a 0 vidas.
   - Criar as telas de fim de jogo com pontuação, recorde e instrução para reiniciar com Espaço.

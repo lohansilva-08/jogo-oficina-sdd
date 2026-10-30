@@ -5,9 +5,10 @@ export class Game {
     this.state = 'start';
     this.score = 0;
     this.lives = CONFIG.initialLives;
+    this.highScore = 0;
     this.player = {
       x: (CONFIG.canvasWidth - CONFIG.playerWidth) / 2,
-      y: CONFIG.playerY
+      y: CONFIG.playerGroundY
     };
     this.items = [];
     this.spawnTimer = 0;
@@ -15,7 +16,7 @@ export class Game {
   }
 
   handleKeyDown(code) {
-    if (code === 'Space' && this.state === 'start') {
+    if (code === 'Space' && this.state !== 'playing') {
       this.start();
       return;
     }
@@ -42,6 +43,7 @@ export class Game {
 
     this.movePlayer(deltaTime);
     this.updateItems(deltaTime);
+    this.checkCollisions();
   }
 
   movePlayer(deltaTime) {
@@ -72,5 +74,36 @@ export class Game {
       x: Math.random() * (CONFIG.canvasWidth - CONFIG.itemSize),
       y: CONFIG.itemStartY
     });
+  }
+
+  checkCollisions() {
+    const remainingItems = [];
+    for (const item of this.items) {
+      if (!this.overlapsPlayer(item)) {
+        remainingItems.push(item);
+      } else if (item.type === 'coffee') {
+        this.score += 1;
+      } else if (this.state === 'playing') {
+        this.lives -= 1;
+        if (this.lives <= 0) {
+          this.endGame();
+        }
+      }
+    }
+    this.items = remainingItems;
+  }
+
+  overlapsPlayer(item) {
+    return item.x < this.player.x + CONFIG.playerWidth
+      && item.x + CONFIG.itemSize > this.player.x
+      && item.y < this.player.y + CONFIG.playerHeight
+      && item.y + CONFIG.itemSize > this.player.y;
+  }
+
+  endGame() {
+    this.lives = 0;
+    this.state = 'gameOver';
+    this.highScore = Math.max(this.highScore, this.score);
+    this.items = [];
   }
 }
