@@ -41,3 +41,4 @@
 ## Correções
 
 - [x] Bug: o dev não aparece na área jogável | Causa: o personagem era desenhado em uma posição vertical acima da faixa inferior visível e dependia da renderização isolada do emoji | _Requisitos: 2.1, 2.2_
+- [x] Bug: o dev desaparece sem tecla pressionada | Causa: movePlayer convertia entradas indefinidas das teclas em NaN, contaminando player.x | _Requisitos: 2.1, 2.2, 2.3_

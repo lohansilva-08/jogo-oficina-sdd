@@ -47,8 +47,8 @@ export class Game {
   }
 
   movePlayer(deltaTime) {
-    const movingLeft = this.keys.ArrowLeft || this.keys.KeyA;
-    const movingRight = this.keys.ArrowRight || this.keys.KeyD;
+    const movingLeft = Boolean(this.keys.ArrowLeft || this.keys.KeyA);
+    const movingRight = Boolean(this.keys.ArrowRight || this.keys.KeyD);
     const direction = Number(movingRight) - Number(movingLeft);
     this.player.x += direction * CONFIG.playerSpeed * deltaTime;
     this.player.x = Math.max(0, Math.min(CONFIG.canvasWidth - CONFIG.playerWidth, this.player.x));
