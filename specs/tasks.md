@@ -2,7 +2,7 @@
 
 > Como usar: rode `/4-implementar N` para cada tarefa, teste no navegador e faça commit.
 
-- [ ] 1. Criar o esqueleto visual e o loop do jogo
+- [x] 1. Criar o esqueleto visual e o loop do jogo
   - Criar a estrutura da página, o estilo centralizado e a área de jogo com Canvas fixo.
   - Adicionar as configurações iniciais do jogo em um único objeto exportado.
   - Criar o ponto de entrada com loop `requestAnimationFrame` e delta time.

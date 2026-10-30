@@ -1,0 +1,28 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: #111827;
+}
+
+.game-container {
+  max-width: 100%;
+  padding: 16px;
+}
+
+canvas {
+  display: block;
+  width: min(800px, calc(100vw - 32px));
+  height: auto;
+  border: 2px solid #334155;
+  background: #0f172a;
+}
