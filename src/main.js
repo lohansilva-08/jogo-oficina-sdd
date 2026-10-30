@@ -1,25 +1,32 @@
 import { CONFIG } from './config.js';
+import { Game } from './game.js';
+import { Renderer } from './renderer.js';
 
 const canvas = document.querySelector('#game');
+canvas.width = CONFIG.canvasWidth;
+canvas.height = CONFIG.canvasHeight;
 const context = canvas.getContext('2d');
+const game = new Game();
+const renderer = new Renderer(context);
+let previousTime = 0;
 
-function drawStartScreen() {
-  context.fillStyle = CONFIG.backgroundColor;
-  context.fillRect(0, 0, CONFIG.canvasWidth, CONFIG.canvasHeight);
+window.addEventListener('keydown', (event) => {
+  if (['ArrowLeft', 'ArrowRight', 'Space'].includes(event.code)) {
+    event.preventDefault();
+  }
+  game.handleKeyDown(event.code);
+});
 
-  context.fillStyle = CONFIG.titleColor;
-  context.textAlign = 'center';
-  context.font = `${CONFIG.titleFontSize}px ${CONFIG.titleFont}`;
-  context.fillText('Chuva de Bugs', CONFIG.canvasWidth / 2, CONFIG.titleOffsetY);
+window.addEventListener('keyup', (event) => {
+  game.handleKeyUp(event.code);
+});
 
-  context.fillStyle = CONFIG.textColor;
-  context.font = `${CONFIG.instructionFontSize}px ${CONFIG.instructionFont}`;
-  context.fillText('Pressione Espaço para começar', CONFIG.canvasWidth / 2, CONFIG.instructionOffsetY);
-}
-
-function frame() {
-  drawStartScreen();
+function frame(currentTime) {
+  const deltaTime = previousTime ? Math.min((currentTime - previousTime) / 1000, CONFIG.maximumDeltaTime) : 0;
+  previousTime = currentTime;
+  game.update(deltaTime);
+  renderer.draw(game);
   requestAnimationFrame(frame);
 }
 
-frame();
+requestAnimationFrame(frame);

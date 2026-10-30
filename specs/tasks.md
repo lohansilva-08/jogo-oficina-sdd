@@ -11,7 +11,7 @@
   - **Como verificar:** abrir o jogo pelo servidor local → a área do jogo aparece centralizada, com fundo escuro e o loop ativo.
   - _Requisitos: 1.1, 1.2_
 
-- [ ] 2. Implementar o controle do dev e os itens
+- [x] 2. Implementar o controle do dev e os itens
   - Criar o módulo de regras da partida com a tela inicial e início por Espaço.
   - Implementar movimento contínuo com as setas ou A/D, mantendo o dev dentro dos limites.
   - Criar cafés e bugs em posições aleatórias no topo, fazer a queda e remover itens que chegam ao chão.
@@ -40,4 +40,4 @@
 
 ## Correções
 
-<vazio por enquanto; o comando /corrigir-bug escreve aqui>
+- [x] Bug: o dev não aparece na área jogável | Causa: o personagem era desenhado em uma posição vertical acima da faixa inferior visível e dependia da renderização isolada do emoji | _Requisitos: 2.1, 2.2_
